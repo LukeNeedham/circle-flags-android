@@ -3,7 +3,9 @@ package com.lukeneedham.circleflagsandroid
 import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
+import java.util.Locale
 
+@Suppress("unused")
 object FlagProvider {
     private const val DRAWABLE_TYPE = "drawable"
     private const val FLAG_NAME_PREFIX = "flag_"
@@ -13,8 +15,9 @@ object FlagProvider {
      * or 0 (the invalid resource id) if no flag is found
      */
     fun getFlagResIdFromCountryAlpha2Code(alpha2Code: String, context: Context): Int {
+        val alpha2 = alpha2Code.toLowerCase(Locale.ENGLISH)
         return context.resources.getIdentifier(
-            FLAG_NAME_PREFIX + alpha2Code,
+            FLAG_NAME_PREFIX + alpha2,
             DRAWABLE_TYPE,
             context.packageName
         )
